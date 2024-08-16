@@ -52,7 +52,7 @@ export async function login(prevState: any, formData: FormData) {
   // 결과가 성공이 아니면 에러를 사용자에게 리턴하고 성공하면 결과 콘솔에 출력
   if(!result.success) { 
     console.log(result.error.flatten()); // 테스트출력
-    return { fieldErrors: result.error.flatten(), success: false }; 
+    return result.error.flatten();
   } else {
     console.log(result.data) // 성공 결과 콘솔에 출력
     return { success: true }; // 성공 시 success: true 반환

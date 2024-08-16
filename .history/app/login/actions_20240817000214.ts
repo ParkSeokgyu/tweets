@@ -3,13 +3,8 @@
 import { z } from "zod";
 
 // 이메일 정규 표현식(필수 포함되어야 하는 문자)
-const EMAIL_REGEX = new RegExp(
+export const EMAIL_REGEX = new RegExp(
   /^[^\s@]+@zod\.com$/
-);
-
-// 비밀번호 정규 표현식(포함되어야 하는 문자)
-const PASSWORD_REGEX = new RegExp(
-  /^(?=.*\d).+$/
 );
 
 // 입력 데이터의 유효성을 검증하기 위한 Zod 스키마 정의
@@ -20,10 +15,7 @@ const formSchema = z.object({
     .toLowerCase()
     .regex(EMAIL_REGEX, "zod.com 이메일만 허용됩니다."),
   username: z
-    .string({
-      invalid_type_error: "이름은 문자열이어야 합니다.",
-      required_error: "이름을 입력해주세요.",
-    })
+    .string()
     .min(5, "사용자명은 5자 이상이어야 합니다.")
     .toLowerCase() // 대문자 입력해도 소문자로 바꿔주기
     .trim(), // 앞뒤 공백제거
@@ -32,11 +24,10 @@ const formSchema = z.object({
       required_error: "비밀번호를 입력해 주세요."
     })
     .min(10, "비밀번호는 10자 이상이어야 합니다.")
-    .regex(PASSWORD_REGEX, "비밀번호는 숫자 하나 이상을 포함해야 합니다(0123456789).")
 })
 
 export async function login(prevState: any, formData: FormData) {
-
+  console.log(prevState)
   await new Promise((resolve) => setTimeout(resolve, 3000)) // 시간 강제 지연 코드
 
   // 폼에서 제출된 데이터를 추출하여 유효성 검사를 위한 객체로 생성
@@ -52,9 +43,9 @@ export async function login(prevState: any, formData: FormData) {
   // 결과가 성공이 아니면 에러를 사용자에게 리턴하고 성공하면 결과 콘솔에 출력
   if(!result.success) { 
     console.log(result.error.flatten()); // 테스트출력
-    return { fieldErrors: result.error.flatten(), success: false }; 
+    return result.error.flatten();
   } else {
     console.log(result.data) // 성공 결과 콘솔에 출력
-    return { success: true }; // 성공 시 success: true 반환
+    // return { success: true }; // 성공 시 success: true 반환
   }
 }

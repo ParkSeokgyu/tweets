@@ -20,10 +20,7 @@ const formSchema = z.object({
     .toLowerCase()
     .regex(EMAIL_REGEX, "zod.com 이메일만 허용됩니다."),
   username: z
-    .string({
-      invalid_type_error: "이름은 문자열이어야 합니다.",
-      required_error: "이름을 입력해주세요.",
-    })
+    .string()
     .min(5, "사용자명은 5자 이상이어야 합니다.")
     .toLowerCase() // 대문자 입력해도 소문자로 바꿔주기
     .trim(), // 앞뒤 공백제거
@@ -52,9 +49,9 @@ export async function login(prevState: any, formData: FormData) {
   // 결과가 성공이 아니면 에러를 사용자에게 리턴하고 성공하면 결과 콘솔에 출력
   if(!result.success) { 
     console.log(result.error.flatten()); // 테스트출력
-    return { fieldErrors: result.error.flatten(), success: false }; 
+    return result.error.flatten();
   } else {
     console.log(result.data) // 성공 결과 콘솔에 출력
-    return { success: true }; // 성공 시 success: true 반환
+    // return { success: true }; // 성공 시 success: true 반환
   }
 }

@@ -23,7 +23,7 @@ export default function Login() {
             placeholder="Email"
             icon={<EmailIcon />}
             required
-            errors={state?.fieldErrors?.fieldErrors.email} 
+            errors={state?.fieldErrors.email} 
           />
           <Input
             name="username"
@@ -31,7 +31,7 @@ export default function Login() {
             placeholder="Username"
             icon={<UsernameIcon />}
             required
-            errors={state?.fieldErrors?.fieldErrors.username} 
+            errors={state?.fieldErrors.username} 
           />
           <Input
             name="password"
@@ -39,7 +39,7 @@ export default function Login() {
             placeholder="Password"
             icon={<PasswordIcon />}
             required
-            errors={state?.fieldErrors?.fieldErrors.password} 
+            errors={state?.fieldErrors.password} 
           />
 
           <Button text="Login" />

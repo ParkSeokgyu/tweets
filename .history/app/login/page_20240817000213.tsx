@@ -23,7 +23,7 @@ export default function Login() {
             placeholder="Email"
             icon={<EmailIcon />}
             required
-            errors={state?.fieldErrors?.fieldErrors.email} 
+            errors={state?.fieldErrors.email} 
           />
           <Input
             name="username"
@@ -31,7 +31,7 @@ export default function Login() {
             placeholder="Username"
             icon={<UsernameIcon />}
             required
-            errors={state?.fieldErrors?.fieldErrors.username} 
+            errors={state?.fieldErrors.username} 
           />
           <Input
             name="password"
@@ -39,14 +39,14 @@ export default function Login() {
             placeholder="Password"
             icon={<PasswordIcon />}
             required
-            errors={state?.fieldErrors?.fieldErrors.password} 
+            errors={state?.fieldErrors.password} 
           />
 
           <Button text="Login" />
         </form>
 
         {/* 로그인 성공 메시지 추가 */}
-        {state?.success && (
+        {/* {state?.success && (
           <div className="p-4 bg-green-500 rounded-2xl relative">
             <div className="absolute left-4">
               <SuccessfullLoginIcon />
@@ -55,7 +55,7 @@ export default function Login() {
               Welcome back!
             </div>
           </div>
-        )}
+        )} */}
 
       </div>
     </div>
