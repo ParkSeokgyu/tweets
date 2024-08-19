@@ -6,8 +6,6 @@ import { EmailIcon, PasswordIcon, SuccessfullLoginIcon, UsernameIcon } from "@/c
 import { useFormState } from "react-dom";
 import { login } from "./actions";
 
-import "@/lib/db" //  요거 작성 테스트하기 위해
-
 export default function Login() {
 
   const [state, action] = useFormState(login, null); //

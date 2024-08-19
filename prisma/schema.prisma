@@ -1,0 +1,50 @@
+// Prisma Client를 생성할 방법을 지정.
+generator client {
+  provider = "prisma-client-js"
+}
+
+// 데이터베이스 설정을 관리.
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+
+// 데이터 모델을 정의.
+
+// User 테이블
+model User {
+  id         Int      @id @default(autoincrement()) // Primary key
+  username   String   @unique
+  password   String?
+  email      String?  @unique
+  bio     String?
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+  // 모델간의 관계를 생성하는 방법
+  Tweet   Tweet[]
+  Likes    Like[]
+}
+
+// Tweet 테이블
+model Tweet {
+  id         Int      @id @default(autoincrement())
+  tweet      String   
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+  // 모델간의 관계를 생성하는 방법
+  user       User     @relation(fields: [userId], references: [id])
+  userId     Int
+  Likes    Like[]
+}
+
+// Like 테이블
+model Like {
+  id         Int      @id @default(autoincrement())
+  created_at DateTime @default(now())
+  // 모델간의 관계를 생성하는 방법
+  user       User     @relation(fields: [userId], references: [id])
+  userId     Int
+  tweet      Tweet    @relation(fields: [tweetId], references: [id])
+  tweetId    Int
+}

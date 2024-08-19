@@ -52,7 +52,6 @@ export async function login(prevState: any, formData: FormData) {
   // 결과가 성공이 아니면 에러를 사용자에게 리턴하고 성공하면 결과 콘솔에 출력
   if(!result.success) { 
     console.log(result.error.flatten()); // 테스트출력
-    // * 에러 발생 시, 'fieldErrors'와 'success: false'를 반환하여 클라이언트에서 에러 메시지와 상태를 처리할 수 있도록 함.
     return { fieldErrors: result.error.flatten(), success: false }; 
   } else {
     console.log(result.data) // 성공 결과 콘솔에 출력
