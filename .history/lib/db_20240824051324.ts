@@ -50,42 +50,42 @@ const db = new PrismaClient();
 // test();
 
 // DB 생성 테스트 코드
-// async function test() {
-//   try {
-//     // 먼저 유저가 있는지 확인
-//     const user = await db.user.findUnique({
-//       where: { id: 9 },
-//     });
+async function test() {
+  try {
+    // 먼저 유저가 있는지 확인
+    const user = await db.user.findUnique({
+      where: { id: 1 },
+    });
 
-//     if (!user) {
-//       console.log("User with id 3 not found");
-//       return;
-//     }
+    if (!user) {
+      console.log("User with id 3 not found");
+      return;
+    }
 
-//     // Product 생성
-//     const product = await db.product.create({
-//       data: {
-//         title: "고구마",
-//         // price: 9999,
-//         description: "맛있는 고구마!!!",
-//         photo: "/goguma.jpg",
-//         user: {
-//           connect: {
-//             id: user.id,
-//           },
-//         },
-//       },
-//     });
+    // Product 생성
+    const product = await db.product.create({
+      data: {
+        title: "고구마",
+        // price: 9999,
+        description: "맛있는 고구마!!!",
+        photo: "/goguma.jpg",
+        user: {
+          connect: {
+            id: user.id,
+          },
+        },
+      },
+    });
 
-//     console.log("Product created:", product);
-//   } catch (error) {
-//     console.error("Error creating product:", error);
-//   } finally {
-//     await db.$disconnect();
-//   }
-// }
+    console.log("Product created:", product);
+  } catch (error) {
+    console.error("Error creating product:", error);
+  } finally {
+    await db.$disconnect();
+  }
+}
 
-// test();
+test();
 
 
 export default db;

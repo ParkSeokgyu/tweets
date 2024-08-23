@@ -4,12 +4,12 @@ export default function Home() {
   return (
     <div className="flex flex-col items-center justify-between min-h-screen p-6">
       
-      <div className="my-auto flex flex-col items-center gap-2 *:font-medium">
+      <div className="flex flex-col items-center gap-2 *:font-medium">
         <h1 className="text-4xl ">Tweets</h1>
         <h2 className="text-2xl my-3">Tweets에 오신것을 환영합니다!</h2>
       </div>
 
-      <div className="flex flex-col items-center gap-3 w-full">
+      <div className="my-auto flex flex-col items-center gap-3 w-full">
         <Link
           href="/create-account"
           className="primary-btn text-lg py-2.5"

@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  a {
+    @apply disabled:text-neutral-200 underline-offset-4;
+  }  
+  .primary-btn {
+    @apply h-12 disabled:bg-neutral-400 disabled:text-neutral-200 disabled:cursor-not-allowed w-full bg-gray-200 font-bold rounded-full hover:bg-gray-300 active:scale-90 transition-transform;
+  }
+}
+
+
+/* h-12 disabled:bg-neutral-400 disabled:text-neutral-200 disabled:cursor-not-allowed w-full bg-gray-200 font-bold rounded-full hover:bg-gray-300 active:scale-90 transition-transform" */
+
+/* w-full bg-gray-200 disabled:text-neutral-200 font-bold rounded-full text-center  */

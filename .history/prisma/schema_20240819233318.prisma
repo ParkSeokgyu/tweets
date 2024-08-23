@@ -9,34 +9,32 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+
+// 데이터 모델을 정의.
+
 // User 테이블
 model User {
   id         Int      @id @default(autoincrement()) // Primary key
   username   String   @unique
   password   String?
   email      String?  @unique
-  bio        String?
-  avatar     String?
+  bio     String?
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
-
   // 모델간의 관계를 생성하는 방법
   Tweet   Tweet[]
   Likes    Like[]
-  Product    Product[]
 }
 
 // Tweet 테이블
 model Tweet {
   id         Int      @id @default(autoincrement())
-  tweet      String   @unique
+  tweet      String   
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
-
   // 모델간의 관계를 생성하는 방법
   user       User     @relation(fields: [userId], references: [id])
   userId     Int
-
   Likes    Like[]
 }
 
@@ -44,23 +42,9 @@ model Tweet {
 model Like {
   id         Int      @id @default(autoincrement())
   created_at DateTime @default(now())
-
   // 모델간의 관계를 생성하는 방법
   user       User     @relation(fields: [userId], references: [id])
   userId     Int
-
-  tweet      Tweet    @relation(fields: [tweetId], references: [id], onDelete: Cascade)
+  tweet      Tweet    @relation(fields: [tweetId], references: [id])
   tweetId    Int
-}
-
-// Products 테이블 
-model Product {
-  id          Int    @id @default(autoincrement())
-  title       String
-  photo       String
-  description String
-  created_at  DateTime @default(now())
-  updated_at  DateTime @updatedAt
-  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId      Int
 }
